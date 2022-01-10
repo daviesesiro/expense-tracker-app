@@ -7,7 +7,6 @@
 
 [Link to live](https://mono-app-frontend.vercel.app)
 
-
 ## To run locally
 
 First thing to do is edit the .env file in the root directory
