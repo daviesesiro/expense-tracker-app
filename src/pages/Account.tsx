@@ -64,12 +64,6 @@ const AccountItem: React.FC<{
       toast.success("Successfully unlinked account");
       queryClient.invalidateQueries();
     },
-    onError: (err: any) => {
-      console.log(err);
-      if (err?.response?.data?.messsage)
-        toast.error(err?.response?.data?.message);
-      else toast.error(err?.message);
-    },
   });
   return (
     <div

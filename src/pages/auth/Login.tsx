@@ -23,7 +23,6 @@ const Login = () => {
     onSuccess: (res) => {
       localStorage.setItem("token", res.data?.token);
       toast.success("Welcome to expense tracker");
-      console.log(res.data);
       auth.signin(res.data?.user);
 
       if (res?.data?.user.accounts === 0) {

@@ -1,20 +1,8 @@
-import { useEffect } from "react";
 import { AiFillLock, AiOutlineArrowUp } from "react-icons/ai";
-import { Navigate, useNavigate } from "react-router-dom";
 import { MonoButton } from "../components/shared/Button";
 import { withAuthRoute } from "../components/shared/withRoute";
-import { useAuth } from "../context/AuthContext";
 
 const Connect = () => {
-  const navigate = useNavigate();
-  const auth = useAuth();
-
-  // useEffect(() => {
-  if ((auth.user?.accounts || 0) > 0) {
-    // return <Navigate to="/" />;
-  }
-  // }, [auth.user, navigate]);
-
   return (
     <div className="flex items-center w-full justify-center min-h-screen">
       <div className="flex items-center justify-center bg-black max-w-[400px] flex-col text-white w-full rounded-xl py-11">

@@ -14,7 +14,6 @@ const Register = () => {
   useEffect(() => {
     if (auth.user) {
       if (auth.user?.accounts === 0) {
-        console.log("hi");
         navigate("/connect");
         return;
       }

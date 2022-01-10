@@ -25,7 +25,6 @@ const Dashboard = () => {
 
 const DashboardBalances = () => {
   const { data: res } = useGetUserAccounts();
-  console.log(res?.data);
   return (
     <div className="">
       <h2 className="border-b pb-2 text-2xl mb-4">Balances</h2>

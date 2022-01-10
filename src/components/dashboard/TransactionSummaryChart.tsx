@@ -26,8 +26,6 @@ export const TransactionSummaryChart = () => {
 
   useGetUserTransactionsSummary({
     onSuccess: (res) => {
-      console.log(res.data);
-      // console.log(res.data.map((r: any) => r.count));
       setAmounts(res.data?.map((d: any) => d.amount));
       setLabels(res.data?.map((d: any) => d.date));
     },
