@@ -1,5 +1,13 @@
 # Expense Tracker App
 
+[API documentation](https://documenter.getpostman.com/view/12561783/UVXdPywd)
+[API LINK](https://expense-tracker-mono.herokuapp.com)
+
+[Link to frontend repo](https://github.com/daviesesiro/mono-app-frontend)
+
+[Link to live](https://mono-app-frontend.vercel.app)
+
+
 ## To run locally
 
 First thing to do is edit the .env file in the root directory
