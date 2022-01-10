@@ -1,6 +1,6 @@
 import React from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../components/shared/Loader";
 import { useGetCurrentUser } from "../hooks/queries/auth";
 
 let AuthContext = React.createContext<AuthContextType>(null!);
@@ -14,7 +14,7 @@ interface User {
 interface AuthContextType {
   user: User | null;
   signin: (user: User, callback?: VoidFunction) => void;
-  signout: (callback: VoidFunction) => void;
+  signout: () => void;
 }
 
 export const AuthProvider: React.FC = ({ children }) => {
@@ -38,7 +38,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   if (isLoading) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" />
+        <Loader size={35} />
       </div>
     );
   }
@@ -48,11 +48,9 @@ export const AuthProvider: React.FC = ({ children }) => {
     callback && callback();
   };
 
-  let signout = (callback: VoidFunction) => {
-    return ({} as any).signout(() => {
-      setUser(null);
-      callback();
-    });
+  let signout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
   };
 
   let value = { user, signin, signout };

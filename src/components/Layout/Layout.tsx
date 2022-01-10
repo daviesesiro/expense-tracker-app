@@ -13,7 +13,7 @@ export const Layout: React.FC = () => {
     enabled: (auth.user?.accounts || 0) > 0,
     links: [
       { text: "Dashboard", to: "/" },
-      { text: "Balances", to: "/balances" },
+      { text: "Accounts", to: "/accounts" },
       { text: "Transactions", to: "/transactions" },
       { text: "Settings", to: "/settings" },
     ],

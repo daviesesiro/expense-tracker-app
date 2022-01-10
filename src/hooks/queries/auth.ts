@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { useQuery, UseQueryOptions } from "react-query";
-import { authHeader, axiosClient } from "../../utils/axios";
+import { getAuthHeader, axiosClient } from "../../utils/axios";
 
 type opts =
   | Omit<
@@ -17,6 +17,9 @@ type opts =
 export const useGetCurrentUser = (options: opts) =>
   useQuery(
     "current-user",
-    () => axiosClient.get("/auth/current-user", { headers: { ...authHeader } }),
+    () =>
+      axiosClient.get("/auth/current-user", {
+        headers: { ...getAuthHeader() },
+      }),
     options
   );

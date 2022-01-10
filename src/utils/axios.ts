@@ -7,6 +7,6 @@ export const axiosClient = Axios.create({
       : process.env.REACT_APP_API_URL,
 });
 
-export const authHeader = {
+export const getAuthHeader = () => ({
   authorization: `Bearer ${localStorage.getItem("token")}`,
-};
+});

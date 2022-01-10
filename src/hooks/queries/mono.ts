@@ -1,18 +1,21 @@
 import { useQuery } from "react-query";
-import { authHeader, axiosClient } from "../../utils/axios";
+import { getAuthHeader, axiosClient } from "../../utils/axios";
 import { useQueryOpts } from "../types";
 
 export const useGetUserAccounts = (options?: useQueryOpts) =>
   useQuery(
     "user-accounts",
-    () => axiosClient.get("/accounts", { headers: { ...authHeader } }),
+    () => axiosClient.get("/accounts", { headers: { ...getAuthHeader() } }),
     options
   );
 
 export const useGetUserAccountsSummary = (options?: useQueryOpts) =>
   useQuery(
     "user-accounts-summary",
-    () => axiosClient.get("/accounts/summary", { headers: { ...authHeader } }),
+    () =>
+      axiosClient.get("/accounts/summary", {
+        headers: { ...getAuthHeader() },
+      }),
     options
   );
 
@@ -21,7 +24,7 @@ export const useGetUserTotalBalance = (options?: useQueryOpts) =>
     "user-total-balance",
     () =>
       axiosClient.get("/accounts/total-balance", {
-        headers: { ...authHeader },
+        headers: { ...getAuthHeader() },
       }),
     options
   );
@@ -36,7 +39,7 @@ export const useGetUserTransactions = (
       axiosClient.get(
         `/accounts/transactions?${new URLSearchParams(payload).toString()}`,
         {
-          headers: { ...authHeader },
+          headers: { ...getAuthHeader() },
         }
       ),
     options
@@ -47,7 +50,7 @@ export const useGetUserTransactionsSummary = (options?: useQueryOpts) =>
     ["user-transaction-summary"],
     () =>
       axiosClient.get(`/accounts/transaction-summary`, {
-        headers: { ...authHeader },
+        headers: { ...getAuthHeader() },
       }),
     options
   );

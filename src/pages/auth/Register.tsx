@@ -13,20 +13,26 @@ const Register = () => {
 
   useEffect(() => {
     if (auth.user) {
-      if (auth.user?.accounts === 0) navigate("/connect");
+      if (auth.user?.accounts === 0) {
+        console.log("hi");
+        navigate("/connect");
+        return;
+      }
       navigate("/");
     }
   }, [auth, navigate]);
 
   const mutation = useRegister({
-    onError: (err: any) => {
-      console.log(err);
-      if (err?.response) toast.error(err.response?.data?.message);
-    },
     onSuccess: (res) => {
       localStorage.setItem("token", res.data?.token);
       toast.success("Welcome to expense tracker");
-      navigate("/");
+      auth.signin(res.data?.user);
+
+      if (res?.data?.user.accounts === 0) {
+        return navigate("/connect", { replace: true });
+      }
+
+      // navigate("/", { replace: true });
     },
   });
 

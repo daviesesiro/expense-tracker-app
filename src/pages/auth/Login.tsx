@@ -13,21 +13,23 @@ const Login = () => {
 
   useEffect(() => {
     if (auth.user) {
-      if (auth.user?.accounts === 0) navigate("/connect");
+      if (auth.user?.accounts === 0) return navigate("/connect");
+
       navigate("/");
     }
   }, [auth, navigate]);
 
   const mutation = useLogin({
-    onError: (err: any) => {
-      console.log(err);
-      if (err?.response) toast.error(err.response?.data?.message);
-    },
     onSuccess: (res) => {
       localStorage.setItem("token", res.data?.token);
       toast.success("Welcome to expense tracker");
+      console.log(res.data);
       auth.signin(res.data?.user);
-      navigate("/");
+
+      if (res?.data?.user.accounts === 0) {
+        return navigate("/connect", { replace: true });
+      }
+      navigate("/", { replace: true });
     },
   });
   return (
@@ -59,12 +61,12 @@ const Login = () => {
                 <Field
                   required
                   name="password"
-                  className="input w-full mb-4"
+                  className="input w-full mb-8"
                   placeholder="Password"
                   type="password"
                 />
 
-                <div className="flex justify-between mb-6">
+                {/* <div className="flex justify-between mb-6">
                   <label className="font-light">
                     <input className="mr-2" type="checkbox" />
                     <span>Remember me</span>
@@ -73,7 +75,7 @@ const Login = () => {
                   <Link className="font-light" to="#">
                     I forgot my password
                   </Link>
-                </div>
+                </div> */}
                 <Button
                   loading={isSubmitting}
                   type="submit"
