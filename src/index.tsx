@@ -6,9 +6,19 @@ import App from "./App";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "./index.css";
 import { Toaster } from "react-hot-toast";
+import { handleOnError } from "./utils/handleOnError";
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } },
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      onError: handleOnError,
+    },
+    mutations: {
+      onError: handleOnError,
+    },
+  },
 });
 
 ReactDOM.render(

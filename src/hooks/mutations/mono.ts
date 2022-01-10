@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { authHeader, axiosClient } from "../../utils/axios";
+import { getAuthHeader, axiosClient } from "../../utils/axios";
 import { UseMutationOpts } from "../types";
 
 interface LinkData {
@@ -12,7 +12,18 @@ export const useMonoLink = (options?: UseMutationOpts<LinkData>) =>
       axiosClient.post(
         "/accounts/link",
         { token: data.code },
-        { headers: { ...authHeader } }
+        { headers: { ...getAuthHeader() } }
       ),
+    options
+  );
+
+export const useMonoUnlink = (
+  options?: UseMutationOpts<{ account_id: string }>
+) =>
+  useMutation(
+    ({ account_id }) =>
+      axiosClient.delete(`/accounts/${account_id}`, {
+        headers: { ...getAuthHeader() },
+      }),
     options
   );

@@ -1,6 +1,24 @@
 import { Bar } from "react-chartjs-2";
 import { useGetUserTransactionsSummary } from "../../hooks/queries/mono";
 import { useState } from "react";
+import {
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export const TransactionSummaryChart = () => {
   const [labels, setLabels] = useState([]);
@@ -8,8 +26,6 @@ export const TransactionSummaryChart = () => {
 
   useGetUserTransactionsSummary({
     onSuccess: (res) => {
-      console.log(res.data);
-      // console.log(res.data.map((r: any) => r.count));
       setAmounts(res.data?.map((d: any) => d.amount));
       setLabels(res.data?.map((d: any) => d.date));
     },

@@ -4,9 +4,11 @@ import { Layout } from "./components/Layout/Layout";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import Balances from "./pages/Balances";
+import Accounts from "./pages/Account";
 import Connect from "./pages/Connect";
+import Transactions from "./pages/Transactions";
 import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
 
 const authRoutes = [
   {
@@ -25,8 +27,16 @@ const dashboardRoutes = [
     index: true,
   },
   {
-    path: "balances",
-    element: <Balances />,
+    path: "accounts",
+    element: <Accounts />,
+  },
+  {
+    path: "settings",
+    element: <Settings />,
+  },
+  {
+    path: "transactions",
+    element: <Transactions />,
   },
   {
     path: "connect",
