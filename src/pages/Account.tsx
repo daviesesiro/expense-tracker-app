@@ -82,7 +82,7 @@ const AccountItem: React.FC<{
       <Button
         loading={mutation.isLoading}
         onClick={() => mutation.mutate({ account_id: props._id })}
-        className="absolute top-12 text-[8px] right-3 xs:top-16 bg-red-500/20 text-red-500 xs:right-5 xs:text-xs p-1 rounded-md"
+        className="absolute top-12 text-[10px] right-3 xs:top-16 bg-red-500/20 text-red-500 xs:right-5 xs:text-xs p-1 rounded-md"
       >
         UNLINK ACCOUNT
       </Button>

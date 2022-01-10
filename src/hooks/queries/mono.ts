@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { getAuthHeader, axiosClient } from "../../utils/axios";
 import { useQueryOpts } from "../types";
 
@@ -29,21 +29,28 @@ export const useGetUserTotalBalance = (options?: useQueryOpts) =>
     options
   );
 
-export const useGetUserTransactions = (
-  payload: { account_id?: string; limit: any },
-  options?: useQueryOpts
-) =>
-  useQuery(
-    ["user-transaction", payload],
-    () =>
-      axiosClient.get(
-        `/accounts/transactions?${new URLSearchParams(payload).toString()}`,
-        {
-          headers: { ...getAuthHeader() },
-        }
-      ),
-    options
+export const useGetUserTransactions = (payload: {
+  account_id?: any;
+  limit: any;
+}) => {
+  payload.account_id = payload.account_id === 0 ? "" : payload.account_id;
+  return useInfiniteQuery(
+    ["user-transactions", payload?.account_id || 0],
+    async ({ pageParam = 1 }) => {
+      const res = await axiosClient.get(
+        `/accounts/transactions?${new URLSearchParams(
+          payload
+        )}&page=${pageParam}`,
+        { headers: { ...getAuthHeader() } }
+      );
+      return res.data;
+    },
+    {
+      getPreviousPageParam: (firstPage) => firstPage.page - 1 ?? false,
+      getNextPageParam: (lastPage) => lastPage.nextPage ?? false,
+    }
   );
+};
 
 export const useGetUserTransactionsSummary = (options?: useQueryOpts) =>
   useQuery(

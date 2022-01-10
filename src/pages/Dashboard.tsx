@@ -13,7 +13,12 @@ const Dashboard = () => {
         <GreetingAvatar className="mb-5" />
         <Accounts />
         <TransactionSummaryChart />
-        <TransactionsList mini title="Latest Transactions" />
+        <TransactionsList
+          key="dashboard-transactons"
+          mini
+          count={5}
+          title="Latest Transactions"
+        />
       </div>
       <div className="md:w-2/5 p-4 md:p-8 min-h-screen xl:p-16 bg-[#F8FAFF] hidden md:block">
         <TotalBalance />

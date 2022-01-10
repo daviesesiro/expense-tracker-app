@@ -16,9 +16,6 @@ export const Accounts = () => {
 
   return (
     <div className="mb-2">
-      {/* <h1 className="divide-y divide-black border-b mb-6 text-2xl border-gray-200 w-full pb-2">
-              Accounts
-            </h1> */}
       <SummaryItem
         className="mb-4 md:hidden"
         isLoading={isBalanceLoading}
@@ -46,8 +43,8 @@ const SummaryItem: React.FC<{
 }> = ({ isLoading, value, title, className }) => {
   return (
     <div className={`${className} flex-grow`}>
-      <p className="mb-3 font-light">{title}</p>{" "}
-      <p className="text-5xl font-bold">
+      <p className="mb-2 sm:mb-3 font-light">{title}</p>{" "}
+      <p className="text-2xl sm:text-5xl font-bold">
         {!isLoading ? (
           Number(value).toLocaleString()
         ) : (
