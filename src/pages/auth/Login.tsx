@@ -36,7 +36,7 @@ const Login = () => {
       <div className="bg-white w-full max-w-xl rounded-2xl py-12">
         <div className="max-w-sm mx-auto px-4 xs:px-0">
           <MonoLogo className="block mx-auto mb-6" />
-          <p className="font-light text-center mb-11">
+          <p className="font-dark text-center mb-11">
             Securely login to your account
           </p>
           <Formik
@@ -53,14 +53,14 @@ const Login = () => {
                 <Field
                   required
                   name="email"
-                  className="input w-full mb-4"
+                  className="input w-full mb-4 border-[#60A5FA] outline-none placeholder-gray-500 placeholder-opacity-60 hover:animate-pulse"
                   placeholder="Email"
                   type="email"
                 />
                 <Field
                   required
                   name="password"
-                  className="input w-full mb-8"
+                  className="input w-full mb-8 border-[#60A5FA] outline-none placeholder-gray-500 placeholder-opacity-60 hover:animate-pulse"
                   placeholder="Password"
                   type="password"
                 />
