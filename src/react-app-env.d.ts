@@ -12,6 +12,7 @@ declare module "@mono.co/connect.js" {
     constructor(config: Config);
     open: () => void;
     setup: () => void;
+    reauthorise: (token: string) => void;
   }
 
   export = MonoInstance;

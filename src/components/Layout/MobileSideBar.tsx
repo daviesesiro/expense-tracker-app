@@ -23,7 +23,7 @@ export const MobileSideBar: React.FC<SideBarProps & MobileSideBarProps> = ({
         } fixed lg:hidden h-screen block bg-black/10 w-screen `}
       />
       <aside
-        className={`lg:hidden fixed duration-100 left-0 top-0 flex bg-black ${
+        className={`z-50 lg:hidden fixed duration-100 left-0 top-0 flex bg-black ${
           showNav ? "scale-x-100" : "w-0 scale-x-0"
         } py-14 origin-left pl-14 w-full max-w-[280px] space-y-7 flex-col h-screen`}
       >
@@ -35,6 +35,7 @@ export const MobileSideBar: React.FC<SideBarProps & MobileSideBarProps> = ({
           <NavLink
             key={idx}
             to={link.to}
+            onClick={() => setShowNav(!showNav)}
             className={({ isActive }) =>
               `${isActive ? "text-white" : "text-white/50"} text-[22px] ${
                 !navLinks.enabled ? "pointer-events-none" : ""

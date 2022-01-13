@@ -78,7 +78,7 @@ export const TransactionSummaryChart = () => {
 
   return (
     <div className="w-full mb-14">
-      <Bar height={80} options={options} data={data} />
+      <Bar height={100} options={options} data={data} />
     </div>
   );
 };
