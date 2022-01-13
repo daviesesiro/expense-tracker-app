@@ -32,7 +32,7 @@ const Login = () => {
     },
   });
   return (
-    <div className="min-h-screen bg-black flex px-4 xs:px-6 sm:px-0 items-center justify-center">
+    <div className="min-h-screen bg-black flex px-5 xs:px-0 items-center justify-center">
       <div className="bg-white w-full max-w-xl rounded-2xl py-12">
         <div className="max-w-sm mx-auto px-4 xs:px-0">
           <MonoLogo className="block mx-auto mb-6" />

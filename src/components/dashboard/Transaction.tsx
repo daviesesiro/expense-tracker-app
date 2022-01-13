@@ -5,12 +5,14 @@ export interface TransactionItem {
   currency: string;
   type: string;
   _id: string;
+  narration: string;
   date: string;
 }
 
 export const Transaction: React.FC<TransactionItem> = ({
   amount,
   type,
+  narration,
   date,
 }) => {
   const isCredit = type === "credit";
@@ -29,15 +31,20 @@ export const Transaction: React.FC<TransactionItem> = ({
           <BsArrowDownLeft className="stroke-1" />
         )}
       </div>
-      <div>
-        <p className="ml-auto font-bold">
+      <div className="flex justify-between w-full items-center">
+        <div>
+          <p className="ml-auto font-semibold text-sm xs:text-base">
+            {narration || "N/A"}
+          </p>
+          <p className="mt-1 text-xs text-gray-500 font-light xs:text-sm">
+            {new Date(date).toLocaleString("en-NG", {
+              hour12: true,
+            })}
+            • {type}
+          </p>
+        </div>
+        <p className="ml-auto text-xs xs:text-base font-bold text-right">
           NGN {Number(amount).toLocaleString()}
-        </p>
-        <p className="mt-1 text-gray-500 font-light text-sm">
-          {new Date(date).toLocaleString("en-NG", {
-            hour12: true,
-          })}{" "}
-          • {type}
         </p>
       </div>
     </div>

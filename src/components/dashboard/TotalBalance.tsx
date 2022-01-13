@@ -1,4 +1,4 @@
-import { MonoButton } from "../shared/Button";
+import { MonoConnectButton } from "../shared/Button";
 import { Loader } from "../shared/Loader";
 import { useGetUserTotalBalance } from "../../hooks/queries/mono";
 
@@ -12,7 +12,9 @@ export const TotalBalance = () => {
         {isLoading ? <Loader /> : (Number(res?.data) || 0).toLocaleString()}
       </p>
       <p className="text-gray-500 mb-8">Your balance across all banks</p>
-      <MonoButton className="w-full btn-blue">LINK BANK ACCOUNT</MonoButton>
+      <MonoConnectButton className="w-full btn-blue">
+        LINK BANK ACCOUNT
+      </MonoConnectButton>
     </div>
   );
 };

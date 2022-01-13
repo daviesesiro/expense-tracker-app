@@ -55,7 +55,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   let value = { user, signin, signout };
 
-  return <AuthContext.Provider value={value}>{children} </AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
