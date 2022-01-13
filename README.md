@@ -10,7 +10,6 @@
 
 [Link to API](https://expense-tracker-mono.herokuapp.com)
 
-
 ## To run locally
 
 First thing to do is edit the .env file in the root directory
