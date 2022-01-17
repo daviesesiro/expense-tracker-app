@@ -61,3 +61,16 @@ export const useGetUserTransactionsSummary = (options?: useQueryOpts) =>
       }),
     options
   );
+
+export const useGetAccountReauthToken = (
+  accountId: string,
+  options?: useQueryOpts
+) =>
+  useQuery(
+    ["user-account-reauth-token", accountId],
+    () =>
+      axiosClient.get(`/accounts/${accountId}/reauth-token`, {
+        headers: { ...getAuthHeader() },
+      }),
+    options
+  );

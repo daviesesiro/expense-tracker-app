@@ -7,6 +7,9 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import "./index.css";
 import { Toaster } from "react-hot-toast";
 import { handleOnError } from "./utils/handleOnError";
+import ReactModal from "react-modal";
+
+ReactModal.setAppElement("#root");
 
 const queryClient = new QueryClient({
   defaultOptions: {

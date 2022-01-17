@@ -95,7 +95,9 @@ export const TransactionsList: React.FC<{
           </Fragment>
         ))}
       </div>
-      <div className="flex justify-center mt-8">{viewMore}</div>
+      {(data?.pages?.length || 0) > 0 && (
+        <div className="flex justify-center mt-8">{viewMore}</div>
+      )}
     </div>
   );
 };

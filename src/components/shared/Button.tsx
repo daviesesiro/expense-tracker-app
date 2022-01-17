@@ -5,6 +5,7 @@ import { ReactComponent as SpinIcon } from "../../assets/loader.svg";
 import { useMonoLink } from "../../hooks/mutations/mono";
 import MonoConnect from "@mono.co/connect.js";
 import { useQueryClient } from "react-query";
+import { useGetAccountReauthToken } from "../../hooks/queries/mono";
 
 interface Props {
   [key: string]: any;
@@ -30,7 +31,7 @@ export const Button: React.FC<Props> = ({
   );
 };
 
-export const MonoButton: React.FC<{
+export const MonoConnectButton: React.FC<{
   navigateTo?: string;
   [key: string]: any;
 }> = ({ children, navigateTo, ...props }) => {
@@ -38,7 +39,7 @@ export const MonoButton: React.FC<{
   const queryClient = useQueryClient();
 
   const mutation = useMonoLink({
-    onSuccess: (res) => {
+    onSuccess: () => {
       toast.success("Account was linked successfully");
       queryClient.invalidateQueries();
 
@@ -46,7 +47,7 @@ export const MonoButton: React.FC<{
     },
   });
 
-  const monoConnect = React.useMemo(() => {
+  const handleClick = () => {
     const monoInstance = new MonoConnect({
       onSuccess: ({ code }) => {
         mutation.mutate({ code });
@@ -55,18 +56,45 @@ export const MonoButton: React.FC<{
     });
 
     monoInstance.setup();
-
-    return monoInstance;
-  }, [mutation]);
+    monoInstance.open();
+  };
 
   return (
-    <Button
-      {...props}
-      loading={mutation.isLoading}
-      onClick={() => {
-        monoConnect.open();
-      }}
-    >
+    <Button {...props} loading={mutation.isLoading} onClick={handleClick}>
+      {children}
+    </Button>
+  );
+};
+
+export const MonoReAuthButton: React.FC<{
+  accountId: string; // not mono account Id
+  [key: string]: any;
+}> = ({ children, accountId, ...props }) => {
+  const queryClient = useQueryClient();
+  const { refetch } = useGetAccountReauthToken(accountId, { enabled: false });
+
+  const monoConnect = React.useMemo(() => {
+    const monoInstance = new MonoConnect({
+      onSuccess: () => {
+        queryClient.invalidateQueries("user-accounts");
+      },
+      key: process.env.REACT_APP_MONO_PUBLIC_KEY,
+    });
+
+    return monoInstance;
+  }, [queryClient]);
+
+  const handleClick = async () => {
+    const { data: res } = await refetch();
+
+    if (res?.data) {
+      monoConnect.reauthorise(res.data);
+      monoConnect.open();
+    }
+  };
+
+  return (
+    <Button {...props} onClick={handleClick}>
       {children}
     </Button>
   );

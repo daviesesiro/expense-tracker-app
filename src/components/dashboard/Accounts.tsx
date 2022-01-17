@@ -10,29 +10,31 @@ export const Accounts = () => {
     useGetUserTotalBalance();
 
   const summary = [
-    { title: "Saving Account", value: data?.data?.savings },
+    { title: "Savings Account", value: data?.data?.savings },
     { title: "Current Account", value: data?.data?.current },
   ];
 
   return (
-    <div className="mb-2">
-      <SummaryItem
-        className="mb-4 md:hidden"
-        isLoading={isBalanceLoading}
-        title="Total Balance"
-        value={totalBalanceRes?.data}
-      />
-      <div className="flex mb-4">
-        {summary.map((s) => (
-          <SummaryItem
-            key={s.title}
-            isLoading={isLoading}
-            title={s.title}
-            value={s.value}
-          />
-        ))}
+    <>
+      <div className="mb-2">
+        <SummaryItem
+          className="mb-4 md:hidden"
+          isLoading={isBalanceLoading}
+          title="Total Balance"
+          value={totalBalanceRes?.data}
+        />
+        <div className="flex mb-4">
+          {summary.map((s) => (
+            <SummaryItem
+              key={s.title}
+              isLoading={isLoading}
+              title={s.title}
+              value={s.value}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 const SummaryItem: React.FC<{

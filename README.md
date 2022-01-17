@@ -8,7 +8,7 @@
 
 [Link to website](https://mono-app-frontend.vercel.app)
 
-[Link to API](https://expense-tracker-mono.herokuapp.com)
+[Link to API](https://expense-tracker-api.daviesesiro.dev)
 
 ## To run locally
 
