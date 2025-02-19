@@ -4,7 +4,7 @@
 
 [API documentation](https://documenter.getpostman.com/view/12561783/UVXdPywd)
 
-[Link to backend repo](https://github.com/daviesesiro/mono-app-backend)
+[Link to backend repo](https://github.com/daviesesiro/expense-tracker-api)
 
 [Link to website](https://mono-app-frontend.vercel.app)
 
